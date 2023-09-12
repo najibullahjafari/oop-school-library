@@ -1,7 +1,11 @@
-require './Person'
-class Teacher 
-  def intitialize(specialization, name = "Unkown", age = 0, id, parent_permission)
-    super(name, age,parent_permission, id)
+require './person'
+
+class Teacher
+  def initialize(id, specialization, name = 'Unknown', age = 0, parent_permission: true)
+    @id = id
+    @name = name
+    @age = age
+    @parent_permission = parent_permission
     @specialization = specialization
   end
 
