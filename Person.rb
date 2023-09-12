@@ -6,8 +6,8 @@ class Person
     @age = age
   end
 
-  attr_writer :name, :age
-
+  attr_accessor :name, :age
+  attr_reader :id
   private
 
   def of_age?

@@ -1,6 +1,6 @@
 require './person'
 
-class Teacher
+class Teacher < Person
   def initialize(id, specialization, name = 'Unknown', age = 0, parent_permission: true)
     @id = id
     @name = name
