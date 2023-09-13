@@ -1,11 +1,7 @@
-# Create a class Nameable. Implement a method called correct_name that will raise a NotImplementedError.
-
-class Nameable
-  def correct_name
-    raise NotImplementedError, 'Subclasses must implement the correct_name method'
-  end
-end
-
+require './nameable'
+require './capitalizedecorator'
+require './trimdecorator'
+require './decoratorbase'
 # Make sure that your Person class inherits from Nameable
 
 class Person < Nameable
@@ -34,34 +30,6 @@ class Person < Nameable
 
   def can_use_services?
     of_age? || @parent_permission
-  end
-end
-
-# Prepare base Decorator Make sure that it inherits from Nameable.
-class DecoratorBase < Nameable
-  def initialize(nameable_obj)
-    super()
-    @nameable = nameable_obj
-  end
-
-  def correct_name
-    @nameable.correct_name
-  end
-end
-
-# Create a class that inherits from the base Decorator class.
-
-class CapitalizeDecorator < DecoratorBase
-  def correct_name
-    super.capitalize
-  end
-end
-
-# For the TrimmerDecorator: Create a class that inherits from the base Decorator class.
-
-class TrimmerDecorator < DecoratorBase
-  def correct_name
-    super[0, 10]
   end
 end
 
