@@ -1,3 +1,4 @@
+# rubocop:disable Layout/TrailingEmptyLines
 require './person'
 
 class Teacher < Person
