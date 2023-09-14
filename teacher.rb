@@ -11,4 +11,4 @@ class Teacher < Person
     true
   end
 end
-# rubocop:enable
+# rubocop:disable Layout/TrailingEmptyLines
