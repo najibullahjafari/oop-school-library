@@ -1,5 +1,5 @@
 require './nameable'
-require './capitalizedecorator'
+require './capitalizer'
 require './trimdecorator'
 require './decoratorbase'
 # Make sure that your Person class inherits from Nameable

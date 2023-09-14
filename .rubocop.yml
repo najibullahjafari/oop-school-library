@@ -3,6 +3,8 @@ AllCops:
   Exclude:
     - "Guardfile"
     - "Rakefile"
+    - "teacher"
+    - "Gemfile"
     - "node_modules/**/*"
 
   DisplayCopNames: true
