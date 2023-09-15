@@ -9,9 +9,9 @@ require './rental'
 # Make sure that your Person class inherits from Nameable
 
 class Person < Nameable
-  
   attr_accessor :name, :age
   attr_reader :id, :rentals
+
   def initialize(id, name = 'Unknown', age = 0, parent_permission: true)
     super()
     @id = id
@@ -50,4 +50,3 @@ end
 # capitalized_trimmed_person = TrimmerDecorator.new(capitalized_person)
 # puts capitalized_trimmed_person.correct_name
 # Create instances of Person and Book
-
