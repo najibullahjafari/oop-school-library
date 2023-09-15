@@ -1,5 +1,6 @@
 require './book'
 require './person'
+
 class Rental
   attr_accessor :book, :person, :date
 
@@ -7,8 +8,9 @@ class Rental
     @date = date
     @book = book
     @person = person
-  end
 
-  book.rentals << self
-  person.rentals << self
+    # Establish the "belongs-to" association
+    book.rentals << self
+    person.rentals << self
+  end
 end
