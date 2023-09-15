@@ -6,7 +6,6 @@ require_relative 'teacher'
 require_relative 'person'
 require_relative 'classroom'
 
-
 def list_books(books)
   puts 'List of Books:'
   books.each do |book|
