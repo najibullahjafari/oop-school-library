@@ -21,11 +21,11 @@ def list_people(people)
   end
 end
 
-def create_person(name, type)
+def create_person(id, name, type)
   if type == 'teacher'
-    Teacher.new(name)
+    Teacher.new(id, name)
   elsif type == 'student'
-    Student.new(name)
+    Student.new(id, name)
   else
     puts 'Invalid person type.'
   end
