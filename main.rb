@@ -9,7 +9,7 @@ require_relative 'teacher'
 ACTION = {
   1 => :list_books,
   2 => :list_people,
-  3 => :create_person_option,
+  3 => :create_person,
   4 => :create_book,
   5 => :create_rental,
   6 => :list_rentals_for_person,

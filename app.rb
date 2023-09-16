@@ -29,7 +29,7 @@ class App
     end
   end
 
-  def create_person_option
+  def create_person
     puts 'Choose the person type:'
     puts '1. Student'
     puts '2. Teacher'
