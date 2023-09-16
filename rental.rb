@@ -1,15 +1,11 @@
-require './book'
-require './person'
-
 class Rental
-  attr_accessor :book, :person, :date
+  attr_accessor :date, :book, :person
 
-  def initialize(book, person, date)
+  def initialize(date, book, person)
     @date = date
     @book = book
     @person = person
 
-    # Establish the "belongs-to" association
     book.rentals << self
     person.rentals << self
   end
