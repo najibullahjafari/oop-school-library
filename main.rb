@@ -4,6 +4,7 @@ require_relative 'book'
 require_relative 'rental'
 require_relative 'student'
 require_relative 'teacher'
+require_relative './lib/main_methods'
 
 # Define the 'act' hash here
 ACTION = {
@@ -21,15 +22,6 @@ def display_menu
   ACTION.each { |k, v| puts "#{k} - #{v.to_s.tr('_', ' ')}" }
   print 'Option: '
   gets.chomp.to_i
-end
-
-def handle_option(app, option)
-  action = ACTION[option]
-  if action
-    app.send(action)
-  else
-    puts 'Invalid option.'
-  end
 end
 
 def main
