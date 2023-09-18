@@ -17,13 +17,6 @@ ACTION = {
   7 => :exit_app
 }.freeze
 
-def display_menu
-  puts "\nPlease choose an option:"
-  ACTION.each { |k, v| puts "#{k} - #{v.to_s.tr('_', ' ')}" }
-  print 'Option: '
-  gets.chomp.to_i
-end
-
 def main
   app = App.new
 
