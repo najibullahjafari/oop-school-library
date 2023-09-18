@@ -8,20 +8,25 @@ require './rental'
 # Make sure that your Person class inherits from Nameable
 
 class Person < Nameable
-  attr_accessor :name, :age
-  attr_reader :id, :rentals
+  attr_accessor :name, :age, :rentals
+  attr_reader :id, :classroom
 
-  def initialize(id, name = 'Unknown', age = 0, parent_permission: true)
+  def initialize(name, age = 0, parent_permission: true)
     super()
-    @id = id
+    @id = rand(1..1000)
     @name = name
     @parent_permission = parent_permission
     @age = age
     @rentals = []
   end
 
+  def classroom=(classroom)
+    @classroom = classroom
+    classroom.add_student(self)
+  end
+
   def add_rental(book, date)
-    Rental.new(book, self, date) # Create a new rental with the person itself
+    @rentals << Rental.new(date, book, self) # Create a new rental with the person itself
   end
 
   def correct_name
