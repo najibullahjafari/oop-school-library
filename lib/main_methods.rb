@@ -1,4 +1,3 @@
-
 def handle_option(app, option)
   action = ACTION[option]
   if action
