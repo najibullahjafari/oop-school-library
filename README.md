@@ -63,6 +63,7 @@ To get a local copy up and running, follow these steps.
 In order to run this project you need:
 
 - the Ruby should be installed in your machine.
+- Run `ruby main.rb`.
 
 ### Setup
 
