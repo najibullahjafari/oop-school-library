@@ -63,6 +63,7 @@ To get a local copy up and running, follow these steps.
 In order to run this project you need:
 
 - the Ruby should be installed in your machine.
+- Run `ruby main.rb`.
 
 ### Setup
 
@@ -79,6 +80,12 @@ Clone this repository to your desired folder:
 - GitHub: [Najibullah_jafari](https://github.com/najibullahjafari)
 - Twitter: [Najibullah_jafari](https://twitter.com/Najib_Jafari_)
 - LinkedIn: [Najibullah_jafari](https://www.linkedin.com/in/najibullahjafari/)
+
+👤 **Syeda Masuma Fatima**
+
+- GitHub: [@MasumaJaffery](https://github.com/MasumaJaffery)
+- Twitter: [@MasumaJaffery](https://twitter.com/MasumaJaffery)
+- LinkedIn: [Masuma Jaffery](https://www.linkedin.com/in/masuma-jaffery-797a29256/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
