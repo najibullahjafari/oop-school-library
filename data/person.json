@@ -1,0 +1,12 @@
+[
+    {
+        "id": 1,
+        "name": "",
+        "age": "",
+        "classroom": "Microverse",
+        "type": "Student",
+        "parent_permission": true,
+        "rentals": [
+        ]
+    }
+]
