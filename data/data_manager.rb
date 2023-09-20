@@ -19,19 +19,17 @@ class DataManager
 
   # Save data to JSON files
   def save_data
-    begin
-      save_books
-      save_people
-      save_rentals
-      puts 'Data saved successfully.'
-    rescue StandardError => e
-      puts "Error saving data: #{e.message}"
-    end
+    save_books
+    save_people
+    save_rentals
+    puts 'Data saved successfully.'
+  rescue StandardError => e
+    puts "Error saving data: #{e.message}"
   end
 
   private
 
-  # Load books 
+  # Load books
   def load_books
     return unless File.exist?('books.json')
 
@@ -46,7 +44,7 @@ class DataManager
     end
   end
 
-  # Load people 
+  # Load people
   def load_people
     return unless File.exist?('people.json')
 
@@ -54,46 +52,45 @@ class DataManager
     @people = JSON.parse(json_str).map do |person_data|
       if person_data['type'] == 'Student'
         classroom = Classroom.new(person_data['classroom'])
-        Student.new(person_data['name'], person_data['age'], classroom, parent_permission: person_data['parent_permission'])
+        Student.new(person_data['name'], person_data['age'], classroom,
+                    parent_permission: person_data['parent_permission'])
       elsif person_data['type'] == 'Teacher'
         Teacher.new(person_data['name'], person_data['age'], person_data['specialization'])
-      else
-        nil
       end
     end.compact
   end
 
   # Save people
-def save_people
-  serialized_people = @people.map do |person|
-    if person.is_a?(Student)
-      {
-        'id' => person.id,
-        'name' => person.name,
-        'age' => person.age,
-        'classroom' => person.classroom.label,
-        'type' => 'Student',
-        'parent_permission' => person.instance_variable_defined?(:@parent_permission) ? person.instance_variable_get(:@parent_permission) : nil,
-        'rentals' => person.rentals.map { |rental| { 'date' => rental.date, 'book_id' => rental.book.id } }
-      }
-    elsif person.is_a?(Teacher)
-      {
-        'id' => person.id,
-        'name' => person.name,
-        'age' => person.age,
-        'specialization' => person.specialization,
-        'type' => 'Teacher',
-        'rentals' => person.rentals.map { |rental| { 'date' => rental.date, 'book_id' => rental.book.id } }
-      }
+  def save_people
+    serialized_people = @people.map do |person|
+      if person.is_a?(Student)
+        {
+          'id' => person.id,
+          'name' => person.name,
+          'age' => person.age,
+          'classroom' => person.classroom.label,
+          'type' => 'Student',
+          'parent_permission' => person.instance_variable_defined?(:@parent_permission) ? person.instance_variable_get(:@parent_permission) : nil,
+          'rentals' => person.rentals.map { |rental| { 'date' => rental.date, 'book_id' => rental.book.id } }
+        }
+      elsif person.is_a?(Teacher)
+        {
+          'id' => person.id,
+          'name' => person.name,
+          'age' => person.age,
+          'specialization' => person.specialization,
+          'type' => 'Teacher',
+          'rentals' => person.rentals.map { |rental| { 'date' => rental.date, 'book_id' => rental.book.id } }
+        }
+      end
+    end
+
+    File.open('people.json', 'w') do |file|
+      file.puts serialized_people.to_json
     end
   end
 
-  File.open('people.json', 'w') do |file|
-    file.puts serialized_people.to_json
-  end
-end
-
-  # Load rentals 
+  # Load rentals
   def load_rentals
     return unless File.exist?('rentals.json')
 
@@ -105,10 +102,12 @@ end
     end
   end
 
-  # Save rentals 
+  # Save rentals
   def save_rentals
     File.open('rentals.json', 'w') do |file|
-      file.puts @rentals.map { |rental| { 'date' => rental.date, 'book_id' => rental.book.id, 'person_id' => rental.person.id } }.to_json
+      file.puts @rentals.map { |rental|
+                  { 'date' => rental.date, 'book_id' => rental.book.id, 'person_id' => rental.person.id }
+                }.to_json
     end
   end
 end

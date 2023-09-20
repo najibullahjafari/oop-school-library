@@ -5,7 +5,7 @@ require_relative 'student'
 require_relative 'teacher'
 require_relative 'person'
 require_relative 'classroom'
-require_relative './data/data_manager'
+require_relative 'data/data_manager'
 
 class App
   attr_accessor :books, :people, :rentals
