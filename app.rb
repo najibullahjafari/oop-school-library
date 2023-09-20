@@ -115,7 +115,9 @@ class App
   def list_rentals_for_person
     print 'Enter person id: '
     personi = gets.chomp.to_i
-    rentals = @rentals.select { |rental| rental.person.id == personi }
+    rentals = @rentals.select do |rental|
+      rental.person && rental.person.id == personi
+    end    
     if rentals.empty?
       puts 'No rentals found for that id.'
     else
