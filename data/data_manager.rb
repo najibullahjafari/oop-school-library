@@ -63,16 +63,8 @@ class DataManager
     end.compact
   end
 
-
-  # Save people 
+  # Save people
 def save_people
-  # existing_people = []
-
-  # if File.exist?('people.json')
-  #   json_str = File.read('people.json')
-  #   existing_people = JSON.parse(json_str)
-  # end
-
   serialized_people = @people.map do |person|
     if person.is_a?(Student)
       {
@@ -96,13 +88,10 @@ def save_people
     end
   end
 
-  all_people = existing_people + serialized_people
-
   File.open('people.json', 'w') do |file|
-    file.puts all_people.to_json
+    file.puts serialized_people.to_json
   end
 end
-
 
   # Load rentals 
   def load_rentals
