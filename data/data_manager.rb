@@ -106,18 +106,17 @@ class DataManager
   def save_rentals
     File.open('rentals.json', 'w') do |file|
       rental_data = @rentals.map do |rental|
-        book_id = rental.book ? rental.book.id : nil
-        person_id = rental.person ? rental.person.id : nil
-  
+        book_id = rental.book&.id
+        person_id = rental.person&.id
+
         {
           'date' => rental.date,
           'book_id' => book_id,
           'person_id' => person_id
         }
       end
-  
+
       file.puts rental_data.to_json
     end
   end
-  
 end

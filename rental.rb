@@ -8,6 +8,5 @@ class Rental
 
     book.rentals << self
     @person.rentals << self if @person
-    
   end
 end
