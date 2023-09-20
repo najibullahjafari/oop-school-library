@@ -1,7 +1,6 @@
 require 'json';
 
 # Get Data
-require 'json'
 def get_data(file_name)
   if File.exist?(file_name)
     file_name = JSON.parse(File.read(file_name))
