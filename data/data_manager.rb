@@ -63,26 +63,19 @@ class DataManager
   # Save people
   def save_people
     serialized_people = @people.map do |person|
-      if person.is_a?(Student)
-        {
-          'id' => person.id,
-          'name' => person.name,
-          'age' => person.age,
-          'classroom' => person.classroom.label,
-          'type' => 'Student',
-          'parent_permission' => person.instance_variable_defined?(:@parent_permission) ? person.instance_variable_get(:@parent_permission) : nil,
-          'rentals' => person.rentals.map { |rental| { 'date' => rental.date, 'book_id' => rental.book.id } }
-        }
-      elsif person.is_a?(Teacher)
-        {
-          'id' => person.id,
-          'name' => person.name,
-          'age' => person.age,
-          'specialization' => person.specialization,
-          'type' => 'Teacher',
-          'rentals' => person.rentals.map { |rental| { 'date' => rental.date, 'book_id' => rental.book.id } }
-        }
-      end
+      data = {
+        'id' => person.id,
+        'name' => person.name,
+        'age' => person.age,
+        'type' => person.is_a?(Student) ? 'Student' : 'Teacher',
+        'rentals' => person.rentals.map { |rental| { 'date' => rental.date, 'book_id' => rental.book.id } }
+      }
+
+      data['classroom'] = person.classroom.label if person.is_a?(Student)
+      data['specialization'] = person.specialization if person.is_a?(Teacher)
+      data['parent_permission'] = person.instance_variable_get(:@parent_permission) if person.is_a?(Student)
+
+      data
     end
 
     File.open('people.json', 'w') do |file|
@@ -100,6 +93,13 @@ class DataManager
       person = @people.find { |p| p.id == rental_data['person_id'] }
       Rental.new(rental_data['date'], book, person)
     end
+  rescue Errno::ENOENT
+    # Handle the case when 'rentals.json' doesn't exist
+    @rentals = []
+  rescue JSON::ParserError => e
+    # Handle JSON parsing errors
+    puts "Error parsing 'rentals.json': #{e.message}"
+    @rentals = []
   end
 
   # Save rentals
