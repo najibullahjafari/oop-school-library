@@ -12,5 +12,10 @@ describe Student do
       expect(age).to eq(22)
       expect(classroom).to eq(classroom)
     end
+
+    it 'Should play hooky' do
+      s = Student.new('Najib', 22, classroom)
+      expect(s.play_hooky).to eq('¯(ツ)/¯')
+    end
   end
 end
