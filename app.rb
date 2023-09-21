@@ -5,14 +5,31 @@ require_relative 'student'
 require_relative 'teacher'
 require_relative 'person'
 require_relative 'classroom'
+require_relative 'data/data_manager'
 
 class App
   attr_accessor :books, :people, :rentals
 
   def initialize
     @books = []
-    @people = [] # Initialize the people array here
+    @people = []
     @rentals = []
+    @data_manager = DataManager.new
+    load_data # Load
+  end
+
+  def load_data
+    @data_manager.load_data
+    @books = @data_manager.books
+    @people = @data_manager.people
+    @rentals = @data_manager.rentals
+  end
+
+  def save_data
+    @data_manager.books = @books
+    @data_manager.people = @people
+    @data_manager.rentals = @rentals
+    @data_manager.save_data
   end
 
   def list_books
@@ -47,6 +64,7 @@ class App
     else
       puts 'Invalid choice.'
     end
+    save_data
   end
 
   def create_student
@@ -97,7 +115,9 @@ class App
   def list_rentals_for_person
     print 'Enter person id: '
     personi = gets.chomp.to_i
-    rentals = @rentals.select { |rental| rental.person.id == personi }
+    rentals = @rentals.select do |rental|
+      rental.person && rental.person.id == personi
+    end
     if rentals.empty?
       puts 'No rentals found for that id.'
     else
@@ -109,6 +129,7 @@ class App
   end
 
   def exit_app
+    save_data
     puts 'exited'
     exit
   end
