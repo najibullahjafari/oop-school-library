@@ -12,4 +12,8 @@ describe Teacher do
     expect(subject.age).to eq(teacher_age)
     expect(subject.specialization).to eq(teacher_specialization)
   end
+
+  it 'should return true when checking if teacher can use services' do
+    expect(subject.can_use_services?).to eq(true)
+  end
 end
