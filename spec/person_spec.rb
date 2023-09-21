@@ -1,4 +1,5 @@
 require_relative '../person'
+require 'date'
 
 describe Person do
   context 'test person class' do
