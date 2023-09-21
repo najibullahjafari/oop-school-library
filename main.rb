@@ -5,7 +5,6 @@ require_relative 'rental'
 require_relative 'student'
 require_relative 'teacher'
 require_relative 'lib/main_methods'
-require_relative 'data/preserve'
 
 # Define the 'act' hash here
 ACTION = {
